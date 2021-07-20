@@ -1,0 +1,39 @@
+def tickets(people):
+    twenty = 0
+    fifty = 0
+    for i in people:
+        if(i == 25):
+            twenty += 1
+            if(i == people[len(people) -1]):
+                    return "YES"
+            else: continue 
+        elif(i == 50):
+            fifty += 1
+            if(twenty >= 1):
+                twenty -= 1
+                if(i == people[len(people) -1]):
+                    return "YES"
+                else: continue 
+            else:
+                return "NO"
+        elif(i == 100):
+            if((twenty*25 + fifty*50) >= 75):
+                if(fifty>=1 and twenty>=2):
+                    fifty -= 1
+                    twenty -= 2
+                    if(i == people[len(people)-1]):
+                        return "YES"
+                    else:continue
+                elif(twenty >= 3):
+                    twenty -= 3
+                    if(i == people[len(people)-1]):
+                            return "YES"
+                    else: continue 
+                else:
+                    return "NO"
+                        
+            else:
+                return "NO"
+        
+
+ticket([25, 25, 50])
