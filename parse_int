@@ -1,0 +1,57 @@
+import re
+def parse_int(string):
+    string = string.strip()
+    print("line 1 string",string)
+    string = re.sub(r"[-]"," ",string)
+    print("This is the string after removing - and ",string)
+    switcher = {
+        "zero":0,
+        "one":1,
+        "two":2,
+        "three":3,
+        "four":4,
+        "five":5,
+        "six":6,
+        "seven":7,
+        "eight":8,
+        "nine":9,
+        "ten":10,
+        "eleven":11,
+        "twelve":12,
+        "thirteen":13,
+        "fourteen":14,
+        "fifteen":15,
+        "sixteen":16,
+        "seventeen":17,
+        "eighteen":18,
+        "nineteen":19,
+        "twenty":20,
+        "thirty":30,
+        "forty":40,
+        "fifty":50,
+        "sixty":60,
+        "seventy":70,
+        "eighty":80,
+        "ninety":90,
+        "hundred":100,
+        "thousand":1000,
+        "million":1000000
+    }
+    result =0
+    
+    for value in string.split():
+        if(value == "and"):continue
+      
+        if(value == "hundred" or value=="thousand" or value == "million"):  
+            #if(len(str(result)) > 1):
+            if(  len(str(switcher.get(value)))  < len(str(result))):
+                result += int(str(result)[-1]) * switcher.get(value) - int(str(result)[-1])
+                print("inside the first if ", switcher.get(value))
+            else:
+            
+                result = result * switcher.get(value)
+        else:
+            result += switcher.get(value)
+        print("value that is being output ", result)
+    return result
+
